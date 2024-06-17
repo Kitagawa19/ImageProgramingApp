@@ -29,7 +29,7 @@ export const LessonList:React.FC = () => {
   return(
     <div className="p-4 min-h-screen">
       <h1 className="text-4xl font-bold mb-4">レッスン一覧</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-3">
         {lessons.map((lesson) => (
           <LessonCard
             key={lesson.title}
