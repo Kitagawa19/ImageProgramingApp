@@ -21,6 +21,10 @@ body {
   background: azure;
 }
 
+.rotate-left{
+  transform: rotate(10deg);
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
