@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-import { Header } from "../../components/layouts/Header";
+import  SubHeader  from "../../components/layouts/SubHeader";
 import { Top } from "../../components/layouts/contents/Top/page";
 
 const HomePage:React.FC = () => {
   return (
     <div>
-      <Header />
+      <SubHeader />
       <Top />
     </div>
   );

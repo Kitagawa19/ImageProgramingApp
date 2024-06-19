@@ -3,16 +3,16 @@ import Link from "next/link";
 
 interface SendButtonProps{
   label: string;
-  link: string;
+  // link: string;
 }
 
-export const SendButton:React.FC<SendButtonProps> = ({ label ,link }) => {
+export const SeconedButton:React.FC<SendButtonProps> = ({ label  }) => {
   return (
-    <Link href={link}>
-      <button className="bg-orange-500 text-white border-none rounded-full px-10 py-8 m-3 text-5xl cursor-pointer hover:bg-orange-600">
+    <div>
+      <button className="bg-orange-500 text-white border-none rounded-full px-10 py-4 m-3 text-xl cursor-pointer hover:bg-orange-600">
         {label}
       </button>
-    </Link>
+    </div>
   );
 }
-export default SendButton;
+export default SeconedButton;
