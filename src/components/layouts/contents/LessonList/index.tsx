@@ -6,7 +6,7 @@ const lessons = [
   {
     title: "変数",
     description: "変数について学びます",
-    link: "/variables"
+    link: "/Variables/1"
   },
   {
     title: '条件分岐',
