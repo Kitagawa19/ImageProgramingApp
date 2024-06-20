@@ -8,6 +8,9 @@ export const Top:React.FC = () => {
       <div className="absolute top-14 right-8 rotate-left">
         <Image src="/beginnermark.png"  width={200} height={200} alt="BegginerMark" priority={true} />
       </div>
+      <div>
+        <Image src="/Animal/Cat.png" width={200} height={200} alt="Cat1" priority={true} />
+      </div>
       <PrimaryButton label="レッスン->" link="/LessonList" />
       <PrimaryButton label="つくる！->" link="/"/>
     </div>
