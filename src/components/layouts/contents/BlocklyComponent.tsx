@@ -2,11 +2,16 @@ import React, { useEffect, useRef } from 'react';
 import * as Blockly from 'blockly/core';
 import 'blockly/blocks';
 import 'blockly/javascript';
-import locale from 'blockly/msg/en';
+import * as locale from 'blockly/msg/en';
 
 Blockly.setLocale(locale);
 
-const BlocklyComponent = ({ initialXml, toolboxXml }) => {
+interface BlocklyComponentProps {
+  initialXml: string;
+  toolboxXml: string;
+}
+
+const BlocklyComponent:React.FC<BlocklyComponentProps> = ({ initialXml, toolboxXml }) => {
   const blocklyDiv = useRef<HTMLDivElement | null>(null);
   const toolbox = useRef<HTMLDivElement | null>(null);
 

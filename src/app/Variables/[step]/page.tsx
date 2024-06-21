@@ -3,7 +3,12 @@ import { usePathname } from 'next/navigation';
 import React from 'react';
 import BlocklyComponent from '../../../components/layouts/contents/BlocklyComponent';
 
-const BlocklySteps = {
+interface BlocklyStepConfig {
+  initialXml: string;
+  toolboxXml: string;
+}
+
+const BlocklySteps: { [key: number]: BlocklyStepConfig } = {
   1: {
     initialXml: `<xml xmlns="https://developers.google.com/blockly/xml">
       <block type="controls_if" x="10" y="10"></block>
@@ -51,10 +56,10 @@ const StepPage = () => {
       />
       <div>
         {stepNumber > 1 && (
-          <a href={`/app/contents/Variables/${stepNumber - 1}`}>前のステップ</a>
+          <a href={`/Variables/${stepNumber - 1}`}>前のステップ</a>
         )}
         {stepNumber < Object.keys(BlocklySteps).length && (
-          <a href={`/app/contents/Variables/${stepNumber + 1}`}>次のステップ</a>
+          <a href={`/Variables/${stepNumber + 1}`}>次のステップ</a>
         )}
       </div>
     </div>
