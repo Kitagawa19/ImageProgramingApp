@@ -1,9 +1,9 @@
 'use client'
 
 import { usePathname } from 'next/navigation';
-import React,{ useState,useRef,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import BlocklyComponent from '../../../components/layouts/contents/BlocklyComponent';
-import * as Blockly from 'blockly/core';
+import * as Blockly from 'blockly';
 import 'blockly/blocks';
 import 'blockly/javascript';
 import { javascriptGenerator } from 'blockly/javascript';
@@ -75,6 +75,8 @@ const BlocklySteps: { [key: number]: BlocklyStepConfig } = {
     toolboxXml: `<xml xmlns="https://developers.google.com/blockly/xml">
       <block type="math_number"></block>
       <block type="math_arithmetic"></block>
+      <block type="text_print"></block>
+      <block type="text"></block>
     </xml>`,
   },
 };
@@ -83,6 +85,18 @@ const StepPage = () => {
   const pathname = usePathname();
   const step = pathname.split('/').pop();
   const [result, setResult] = useState<string>('');
+
+  useEffect(() => {
+    if (Blockly.JavaScript) { // Ensure Blockly.JavaScript is defined
+      Blockly.JavaScript['text_print'] = function(block: Blockly.Block) {
+        var msg = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_NONE) || '\'\'';
+        // Use window.setResult to ensure it's called in the global scope
+        return `window.setResult(${msg});\n`;
+      };
+    } else {
+      console.error('Blockly.JavaScript is not defined.');
+    }
+  }, []);
 
   // stepをstring型に変換する
   const stepNumber = step ? parseInt(step, 10) : 0;
@@ -98,8 +112,7 @@ const StepPage = () => {
     console.log(code); // 生成されたコードを出力
     try {
       // eslint-disable-next-line no-eval
-      const result = eval(code);
-      setResult(result !== undefined ? result.toString() : '実行結果がありません。');
+      eval(code);
     } catch (error) {
       if (error instanceof Error) {
         setResult(`エラー: ${error.message}`);
