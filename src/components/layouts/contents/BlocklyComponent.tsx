@@ -1,40 +1,55 @@
-import React, { useEffect, useRef } from 'react';
-import * as Blockly from 'blockly/core';
+import React, { useEffect } from 'react';
+import * as Blockly from 'blockly';
 import 'blockly/blocks';
 import 'blockly/javascript';
-import * as locale from 'blockly/msg/en';
-
-Blockly.setLocale(locale);
 
 interface BlocklyComponentProps {
   initialXml: string;
   toolboxXml: string;
+  onRunCode: () => void;
 }
 
-const BlocklyComponent:React.FC<BlocklyComponentProps> = ({ initialXml, toolboxXml }) => {
-  const blocklyDiv = useRef<HTMLDivElement | null>(null);
-  const toolbox = useRef<HTMLDivElement | null>(null);
-
+const BlocklyComponent: React.FC<BlocklyComponentProps> = ({ initialXml, toolboxXml, onRunCode }) => {
   useEffect(() => {
-    const workspace = Blockly.inject(blocklyDiv.current!, {
-      toolbox: toolbox.current!,
+    const workspace = Blockly.inject('blocklyDiv', {
+      toolbox: toolboxXml,
+      scrollbars: true,
+      trashcan: true,
     });
 
-    if (initialXml) {
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(initialXml, 'text/xml');
-      Blockly.Xml.domToWorkspace(xmlDoc.documentElement, workspace);
-    }
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(initialXml, 'text/xml');
+    Blockly.Xml.domToWorkspace(xmlDoc.documentElement, workspace);
 
-    return () => workspace.dispose();
-  }, [initialXml]);
+    document.getElementById('runButton')?.addEventListener('click', onRunCode);
+
+    return () => {
+      workspace.dispose();
+      document.getElementById('runButton')?.removeEventListener('click', onRunCode);
+    };
+  }, [initialXml, toolboxXml, onRunCode]);
 
   return (
-    <div style={{ display: 'flex' }}>
-      <div ref={toolbox} style={{ display: 'none' }} dangerouslySetInnerHTML={{ __html: toolboxXml }} />
-      <div ref={blocklyDiv} style={{ height: '480px', width: '600px' }} />
+    <div>
+      <div id="blocklyDiv" style={{ height: '480px', width: '100%' }}></div>
+      <button id="runButton">Run Code</button>
     </div>
   );
 };
 
 export default BlocklyComponent;
+
+
+// useEffect(() => {
+//   const workspace = Blockly.inject(blocklyDiv.current!, {
+//     toolbox: toolbox.current!,
+//   });
+
+//   if (initialXml) {
+//     const parser = new DOMParser();
+//     const xmlDoc = parser.parseFromString(initialXml, 'text/xml');
+//     Blockly.Xml.domToWorkspace(xmlDoc.documentElement, workspace);
+//   }
+
+//   return () => workspace.dispose();
+// }, [initialXml]);
