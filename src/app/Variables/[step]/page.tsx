@@ -1,140 +1,68 @@
-'use client'
+'use client';
 
+import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import React, { useState, useEffect } from 'react';
-import BlocklyComponent from '../../../components/elements/Block/BlocklyComponent';
-import * as Blockly from 'blockly';
-import 'blockly/blocks';
-import 'blockly/javascript';
-import { javascriptGenerator } from 'blockly/javascript';
 import Header from '@/components/layouts/Header';
 
-interface BlocklyStepConfig {
-  initialXml: string;
-  toolboxXml: string;
-}
-
-const BlocklySteps: { [key: number]: BlocklyStepConfig } = {
+const MaxSteps: { [key: number]: StepConfig }  = {
   1: {
-    initialXml: `<xml xmlns="https://developers.google.com/blockly/xml">
-      <block type="controls_if" x="10" y="10"></block>
-    </xml>`,
-    toolboxXml: `<xml xmlns="https://developers.google.com/blockly/xml">
-      <block type="controls_if"></block>
-      <block type="controls_repeat_ext"></block>
-      <block type="logic_compare"></block>
-      <block type="math_number"></block>
-      <block type="math_arithmetic"></block>
-      <block type="text_print"></block>
-      <block type="text"></block>
-    </xml>`,
+    title: '変数の学習',
+    description: '変数とは何かを学びます。',
   },
   2: {
-    initialXml: `<xml xmlns="https://developers.google.com/blockly/xml">
-      <block type="controls_repeat_ext" x="10" y="10">
-        <value name="TIMES">
-          <block type="math_number">
-            <field name="NUM">5</field>
-          </block>
-        </value>
-        <statement name="DO">
-          <block type="text_print">
-            <value name="TEXT">
-              <block type="text">
-                <field name="TEXT">こんにちは</field>
-              </block>
-            </value>
-          </block>
-        </statement>
-      </block>
-    </xml>`,
-    toolboxXml: `<xml xmlns="https://developers.google.com/blockly/xml">
-      <block type="controls_repeat_ext"></block>
-      <block type="logic_compare"></block>
-      <block type="math_number"></block>
-      <block type="math_arithmetic"></block>
-      <block type="text_print"></block>
-      <block type="text"></block>
-    </xml>`,
+    title: '変数の使い方',
+    description: '変数を使ってみましょう。',
   },
   3: {
-    initialXml: `<xml xmlns="https://developers.google.com/blockly/xml">
-      <block type="math_arithmetic" x="10" y="10">
-        <field name="OP">ADD</field>
-        <value name="A">
-          <block type="math_number">
-            <field name="NUM">1</field>
-          </block>
-        </value>
-        <value name="B">
-          <block type="math_number">
-            <field name="NUM">2</field>
-          </block>
-        </value>
-      </block>
-    </xml>`,
-    toolboxXml: `<xml xmlns="https://developers.google.com/blockly/xml">
-      <block type="math_number"></block>
-      <block type="math_arithmetic"></block>
-      <block type="text_print"></block>
-      <block type="text"></block>
-    </xml>`,
+    title: '変数の活用',
+    description: '変数を活用してみましょう。',
   },
 };
 
 const StepPage = () => {
+  const [itemsInBasket, setItemsInBasket] = useState<number>(0);
   const pathname = usePathname();
   const step = pathname.split('/').pop();
-  const [result, setResult] = useState<string>('');
-
-  useEffect(() => {
-    if (Blockly.JavaScript) { // Ensure Blockly.JavaScript is defined
-      Blockly.JavaScript['text_print'] = function(block: Blockly.Block) {
-        var msg = Blockly.JavaScript.valueToCode(block, 'TEXT', Blockly.JavaScript.ORDER_NONE) || '\'\'';
-        // Use window.setResult to ensure it's called in the global scope
-        return `window.setResult(${msg});\n`;
-      };
-    } else {
-      console.error('Blockly.JavaScript is not defined.');
-    }
-  }, []);
-
-  // stepをstring型に変換する
   const stepNumber = step ? parseInt(step, 10) : 0;
-  const blocklyConfig = BlocklySteps[stepNumber];
+  const stepConfig = MaxSteps[stepNumber];
 
-  if (!blocklyConfig) {
+  if (!stepConfig) {
     return <div>ステップが見つかりません。</div>;
   }
 
-  const executeCode = () => {
-    const workspace = Blockly.getMainWorkspace();
-    const code = javascriptGenerator.workspaceToCode(workspace);
-    console.log(code); // 生成されたコードを出力
-    try {
-      // eslint-disable-next-line no-eval
-      eval(code);
-    } catch (error) {
-      if (error instanceof Error) {
-        setResult(`エラー: ${error.message}`);
-      } else {
-        setResult('不明なエラーが発生しました。');
-      }
-    }
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setItemsInBasket(itemsInBasket + 1);
   };
+
+  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+  };
+
 
   return (
     <div>
       <Header />
-      <h1>ステップ {stepNumber}</h1>
-      <BlocklyComponent
-        initialXml={blocklyConfig.initialXml}
-        toolboxXml={blocklyConfig.toolboxXml}
-        onRunCode={executeCode}
-      />
-      <div>
-        <h2>実行結果</h2>
-        <pre>{result}</pre>
+      <h1 className="text-2xl font-bold text-center mt-4">変数の学習</h1>
+      <div className="flex justify-around items-center mt-10">
+        <div
+          className="w-48 h-48 border-2 border-dashed flex justify-center items-center text-lg"
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+        >
+          カゴ
+        </div>
+        <div className="flex flex-col items-center">
+          <img
+            src="/Animal/Cat.png"
+            alt="Cat"
+            draggable
+            className="w-36 h-48 cursor-grab mb-4"
+          />
+        </div>
+      </div>
+      <div className="text-center mt-8">
+        <h2 className="text-xl">カゴに入れたアイテムの数: {itemsInBasket}</h2>
       </div>
       <div>
         {stepNumber > 1 && (
@@ -142,7 +70,7 @@ const StepPage = () => {
         )}
         </div>
         <div>
-        {stepNumber < Object.keys(BlocklySteps).length && (
+        {stepNumber < Object.keys(MaxSteps).length && (
           <a href={`/Variables/${stepNumber + 1}`}>次へ</a>
         )}
       </div>
