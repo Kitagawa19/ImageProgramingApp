@@ -9,7 +9,7 @@ export const Top:React.FC = () => {
         <Image src="/beginnermark.png"  width={200} height={200} alt="BegginerMark" priority={true} />
       </div>
       <div className="flex space-4">
-        <Image src="/Animal/Cat.png" width={200} height={200} alt="Cat" priority={true} />
+        <Image src="/Animal/Cat.png" width={200} height={200} alt="Cat" priority={true}  />
         <Image src="/Animal/Cat.png" width={200} height={200} alt="Chick" priority={true} />
       </div>
       

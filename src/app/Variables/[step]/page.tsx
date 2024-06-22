@@ -2,11 +2,12 @@
 
 import { usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
-import BlocklyComponent from '../../../components/layouts/contents/BlocklyComponent';
+import BlocklyComponent from '../../../components/elements/Block/BlocklyComponent';
 import * as Blockly from 'blockly';
 import 'blockly/blocks';
 import 'blockly/javascript';
 import { javascriptGenerator } from 'blockly/javascript';
+import Header from '@/components/layouts/Header';
 
 interface BlocklyStepConfig {
   initialXml: string;
@@ -124,6 +125,7 @@ const StepPage = () => {
 
   return (
     <div>
+      <Header />
       <h1>ステップ {stepNumber}</h1>
       <BlocklyComponent
         initialXml={blocklyConfig.initialXml}
@@ -136,10 +138,12 @@ const StepPage = () => {
       </div>
       <div>
         {stepNumber > 1 && (
-          <a href={`/Variables/${stepNumber - 1}`}>前のステップ</a>
+          <a href={`/Variables/${stepNumber - 1}`}>前へ</a>
         )}
+        </div>
+        <div>
         {stepNumber < Object.keys(BlocklySteps).length && (
-          <a href={`/Variables/${stepNumber + 1}`}>次のステップ</a>
+          <a href={`/Variables/${stepNumber + 1}`}>次へ</a>
         )}
       </div>
     </div>

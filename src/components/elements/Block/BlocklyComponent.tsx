@@ -31,7 +31,7 @@ const BlocklyComponent: React.FC<BlocklyComponentProps> = ({ initialXml, toolbox
 
   return (
     <div>
-      <div id="blocklyDiv" style={{ height: '480px', width: '100%' }}></div>
+      <div id="blocklyDiv" style={{ height: '480px', width: '50%' }}></div>
       <button id="runButton">Run Code</button>
     </div>
   );
