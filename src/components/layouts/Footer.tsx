@@ -2,10 +2,9 @@ import Link from "next/link";
 
 export const Footer = () => {
 return (
-<header className="m-2">
-    {/* <p>イメージで学ぶプログラミング</p> */}
-    <Link href="/">Home</Link>
-</header>
+    <footer>
+        © 2022 bluecode all rights reserved.
+    </footer>
 );
 }
 export default Footer;

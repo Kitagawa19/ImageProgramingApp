@@ -1,6 +1,7 @@
-import React, { FC } from "react";
+import React from "react";
 import  SubHeader  from "../../components/layouts/SubHeader";
-import { Top } from "../../components/layouts/contents/Top/page";
+import Footer from "@/components/layouts/Footer";
+import  Top  from "../../components/layouts/contents/Top/page";
 
 const HomePage:React.FC = () => {
   return (
