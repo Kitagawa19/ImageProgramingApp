@@ -1,4 +1,4 @@
-# Programming AppLangchai
+# Programming App
 プログラミングの概念をイメージを通してブロックコードから学ぶ
 そのブロックコードでいろいろ作成できるようにする
 ブロックコードのプログラミングアプリにLangchainをもちいたAIを使用する
