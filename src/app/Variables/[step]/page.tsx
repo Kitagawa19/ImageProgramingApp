@@ -4,6 +4,13 @@ import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Header from '@/components/layouts/Header';
 
+interface StepConfig{
+  title: string;
+  description: string;
+  problem?: string;
+  correctAnswer?: number;
+}
+
 const MaxSteps: { [key: number]: StepConfig }  = {
   1: {
     title: '変数の学習',
@@ -12,6 +19,8 @@ const MaxSteps: { [key: number]: StepConfig }  = {
   2: {
     title: '変数の使い方',
     description: '変数を使ってみましょう。',
+    problem: `カゴに入れた数に３を足した数は？`,
+    correctAnswer: 8,
   },
   3: {
     title: '変数の活用',
@@ -21,6 +30,8 @@ const MaxSteps: { [key: number]: StepConfig }  = {
 
 const StepPage = () => {
   const [itemsInBasket, setItemsInBasket] = useState<number>(0);
+  const [userAnswer,setUserAnswer] = useState<number | null>(null);
+  const [isCorrect,setIsCorrect] = useState<boolean | null>(null);
   const pathname = usePathname();
   const step = pathname.split('/').pop();
   const stepNumber = step ? parseInt(step, 10) : 0;
@@ -39,11 +50,52 @@ const StepPage = () => {
     event.preventDefault();
   };
 
+  const handleQuestion = (event: React.DragEvent<HTMLDivElement>, value: number) => {
+    event.preventDefault();
+    setItemsInBasket(itemsInBasket + 1);
+    setUserAnswer(value);
+    setIsCorrect( value == stepConfig.correctAnswer);
+  };
+
+  const renderItem = () => {
+    const items = [];
+    for(let i = 0; i < 10; i++){
+      items.push(
+        <img 
+        key={i}
+        src={`/Numbers/${i}.png`}
+        alt={`Number ${i}`}
+        draggable
+        className='w-12 h-12 cursor-grab mb-4'
+        onDragStart={(event)=>event.dataTransfer.setData(`text/plain`,String(i))}
+        />
+      );
+    } return items;
+  } 
 
   return (
     <div>
       <Header />
       <h1 className="text-2xl font-bold text-center mt-4">変数の学習</h1>
+      { stepNumber === 2 && (
+        <div className='mt-8 text-center'>
+          <h2 className='text-xl mb-4'>{stepConfig.problem}</h2>
+          <div className='flex justify-center flex-wrap'>{renderItem()}</div>
+          <div className='w-48 h-48 border-2 flex justify-center items-center text-lg mt-4'
+               onDrag={(event) => handleQuestion(event,parseInt(event.dataTransfer.getData(`text/plain`),10))}
+               onDragOver={handleDragOver}>ドロップして答えを入力</div>
+          {userAnswer !== null && (
+            <div className='mt-4'>
+              <h2 className='text-xl'>あなたの答えは:{userAnswer}</h2>
+              {isCorrect !== null && (
+                <h2 className={`text-xl ${isCorrect ? `text-green-500`:`text-red-500`}`}>
+                  {isCorrect ? `正解です`:`不正解です`}
+                </h2>
+              )}
+            </div>
+          )}
+        </div>
+      )}
       <div className="flex justify-around items-center mt-10">
         <div
           className="w-48 h-48 border-2 border-dashed flex justify-center items-center text-lg"
