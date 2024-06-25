@@ -1,5 +1,4 @@
-# イメージから学ぶプログラミング
-## 目標
-イメージでプログラミングの概念を学びつつAIを搭載することで対応力を養う
-### 参考資料
-`https://zenn.dev/arafipro/books/pdf-question-yt/viewer/06-pdf-question-yt`
+# Programming App
+プログラミングの概念を画像のドラッグ＆ドロップで学ぶ
+後の内容はまだ未定
+
