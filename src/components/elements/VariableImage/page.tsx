@@ -20,18 +20,18 @@ export const VariableImage = () => {
           onDragOver={handleDragOver}
         >
           カゴ
-        </div>
-        <div className="flex flex-col items-center">
-          <img
-            src="/Animal/Cat.png"
-            alt="Cat"
-            draggable
-            className="w-36 h-48 cursor-grab mb-4"
-          />
-        </div>
-        <div className="text-center mt-8">
-        <h2 className="text-xl">カゴに入れたアイテムの数: {itemsInBasket}</h2>
       </div>
+      <div className="flex flex-col items-center">
+        <img
+          src="/Animal/Cat.png"
+          alt="Cat"
+          draggable
+          className="w-36 h-48 cursor-grab mb-4"
+          />
+      </div>
+        <div className="text-center mt-8">
+          <h2 className="text-xl">カゴに入れたアイテムの数: {itemsInBasket}</h2>
+        </div>
     </div>
   )
 }
