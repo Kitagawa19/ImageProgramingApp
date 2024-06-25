@@ -31,4 +31,4 @@ export const LessonCard: React.FC<LessonCardProps> = ({ title, description, link
   );
 };
 
-export default LessonCard;
+

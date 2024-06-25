@@ -7,4 +7,3 @@ return (
     </footer>
 );
 }
-export default Footer;

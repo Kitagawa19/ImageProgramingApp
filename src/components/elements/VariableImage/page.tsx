@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+
 export const VariableImage = () => {
   const [itemsInBasket,setItemsInBasket] = useState(0);
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {

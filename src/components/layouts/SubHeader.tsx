@@ -8,4 +8,3 @@ return (
 </header>
 );
 }
-export default SubHeader;

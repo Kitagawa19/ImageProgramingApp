@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import Header from '@/components/layouts/Header';
+import { Header } from '@/components/layouts/Header';
 import { VariableImage } from '@/components/elements/VariableImage/page';
 import { NavigationButton } from '@/components/elements/NavigationButton/page';
 
@@ -49,7 +49,7 @@ const MaxSteps: { [key: number]: StepConfig }  = {
   },
 };
 
-const StepPage = () => {
+export const StepPage = () => {
   const [itemsInBasket, setItemsInBasket] = useState(0);
   const [userAnswer,setUserAnswer] = useState<number | null>(null);
   const [isCorrect,setIsCorrect] = useState<boolean | null>(null);
@@ -61,12 +61,6 @@ const StepPage = () => {
   if (!stepConfig) {
     return <div>ステップが見つかりません。</div>;
   }
-
-  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    setItemsInBasket(itemsInBasket + 1);
-  };
-
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
   };
@@ -130,5 +124,3 @@ const StepPage = () => {
     </div>
   )
 }
-
-export default StepPage;
