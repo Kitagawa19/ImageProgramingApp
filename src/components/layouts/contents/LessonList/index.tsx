@@ -25,7 +25,7 @@ const lessons = [
   },
 ]
 
-export const LessonList:React.FC = () => {
+export const LessonList = () => {
   return(
     <div className="p-4 min-h-screen">
       <h1 className="text-4xl font-bold mb-4">レッスン一覧</h1>
@@ -40,6 +40,5 @@ export const LessonList:React.FC = () => {
         ))}
       </div>
     </div>
-  );
-};
-export default LessonList;
+  )
+}

@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { PrimaryButton } from "../../../elements/PrimaryButton/page";
 
-export const Top:React.FC = () => {
+export const Top = () => {
   return(
     <div className="flex flex-col items-center justify-center h-screen space-4">
       <div className="absolute top-14 right-8 rotate-left">
@@ -16,6 +16,5 @@ export const Top:React.FC = () => {
       <PrimaryButton label="レッスン->" link="/LessonList" />
       <PrimaryButton label="つくる！->" link="/"/>
     </div>
-  );
-};
-export default Top;
+  )
+}

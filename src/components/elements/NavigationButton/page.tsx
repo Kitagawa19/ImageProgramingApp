@@ -9,9 +9,11 @@ interface ButtonProps{
 export const NavigationButton:React.FC<ButtonProps> = ({ label,href }) => {
   return(
     <div>
-      <a href={href} className="text-blue-500 px-4 py-2 border border-blue-500 rounded hover:bg-blue-500 hover:text-white transition">
-      { label }
-    </a>
+      <Link href={href}>
+        <p className="text-blue-500 px-4 py-2 border border-blue-500 rounded hover:bg-blue-500 hover:text-white transition">
+        { label }
+        </p>
+      </Link>
     </div>
   )
 }

@@ -1,9 +1,8 @@
 import React from "react";
-import  SubHeader  from "../../components/layouts/SubHeader";
-import Footer from "@/components/layouts/Footer";
-import  Top  from "../../components/layouts/contents/Top/page";
+import { SubHeader } from "@/components/layouts/SubHeader";
+import  { Top } from "@/components/layouts/contents/Top/index";
 
-const HomePage:React.FC = () => {
+const HomePage = () => {
   return (
     <div>
       <SubHeader />
