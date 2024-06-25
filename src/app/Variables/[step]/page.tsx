@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Header from '@/components/layouts/Header';
 import { VariableImage } from '@/components/elements/VariableImage/page';
+import { NavigationButton } from '@/components/elements/NavigationButton/page';
 
 
 interface StepConfig{
@@ -49,7 +50,7 @@ const MaxSteps: { [key: number]: StepConfig }  = {
 };
 
 const StepPage = () => {
-  const [itemsInBasket, setItemsInBasket] = useState<number>(0);
+  const [itemsInBasket, setItemsInBasket] = useState(0);
   const [userAnswer,setUserAnswer] = useState<number | null>(null);
   const [isCorrect,setIsCorrect] = useState<boolean | null>(null);
   const pathname = usePathname();
@@ -102,8 +103,9 @@ const StepPage = () => {
           <h2 className='text-xl mb-4'>{stepConfig.problem}</h2>
           <div className='flex justify-center flex-wrap'>{renderItem()}</div>
           <div className='w-48 h-48 border-2 flex justify-center items-center text-lg mt-4'
-               onDrag={(event) => handleQuestion(event,parseInt(event.dataTransfer.getData(`text/plain`),10))}
-               onDragOver={handleDragOver}>ドロップして答えを入力</div>
+                onDrag={(event) => handleQuestion(event,parseInt(event.dataTransfer.getData(`text/plain`),10))}
+                onDragOver={handleDragOver}>ドロップして答えを入力
+          </div>
           {userAnswer !== null && (
             <div className='mt-4'>
               <h2 className='text-xl'>あなたの答えは:{userAnswer}</h2>
@@ -117,21 +119,16 @@ const StepPage = () => {
         </div>
       )}
       <VariableImage />
-      <div className="text-center mt-8">
-        <h2 className="text-xl">カゴに入れたアイテムの数: {itemsInBasket}</h2>
-      </div>
-      <div>
+      <div className='flrx justify-between mt-8'>
         {stepNumber > 1 && (
-          <a href={`/Variables/${stepNumber - 1}`}>前へ</a>
+          <NavigationButton label='前へ' href={`/Variables/${stepNumber - 1}`} />
         )}
-        </div>
-        <div>
         {stepNumber < Object.keys(MaxSteps).length && (
-          <a href={`/Variables/${stepNumber + 1}`}>次へ</a>
+          <NavigationButton label='次へ' href={`/Variables/${stepNumber + 1}`} />
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default StepPage;
