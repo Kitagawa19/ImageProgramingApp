@@ -1,8 +1,8 @@
-import React, { FC } from "react";
-import { LessonList } from "../../components/layouts/contents/LessonList";
-import { Header } from "../../components/layouts/Header";
+import React from "react";
+import { LessonList } from "@/components/layouts/contents/LessonList/index";
+import { Header } from "@/components/layouts/Header";
 
-const LessonListPage:React.FC = () => {
+const LessonListPage = () => {
   return (
     <div>
       <Header />

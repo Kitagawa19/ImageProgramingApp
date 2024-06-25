@@ -15,4 +15,3 @@ export const PrimaryButton:React.FC<PrimaryButtonProps> = ({ label ,link }) => {
     </Link>
   );
 }
-export default PrimaryButton;

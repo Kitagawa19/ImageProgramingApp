@@ -1,12 +1,11 @@
-import React,{ FC } from "react";
-import { LessonCard } from "../../../elements/Lessoncard/page";
-import { title } from "process";
+import React from "react";
+import { LessonCard } from "@/components/elements/LessonCard/index";
 
 const lessons = [
   {
     title: "変数",
     description: "変数について学びます",
-    link: "/variables"
+    link: "/Animation/Variable"
   },
   {
     title: '条件分岐',
@@ -25,7 +24,7 @@ const lessons = [
   },
 ]
 
-export const LessonList:React.FC = () => {
+export const LessonList = () => {
   return(
     <div className="p-4 min-h-screen">
       <h1 className="text-4xl font-bold mb-4">レッスン一覧</h1>
@@ -40,6 +39,5 @@ export const LessonList:React.FC = () => {
         ))}
       </div>
     </div>
-  );
-};
-export default LessonList;
+  )
+}
