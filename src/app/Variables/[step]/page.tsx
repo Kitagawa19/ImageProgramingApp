@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Header from '@/components/layouts/Header';
+import { VariableImage } from '@/components/elements/VariableImage/page';
+
 
 interface StepConfig{
   title: string;
@@ -114,23 +116,7 @@ const StepPage = () => {
           )}
         </div>
       )}
-      <div className="flex justify-around items-center mt-10">
-        <div
-          className="w-48 h-48 border-2 border-dashed flex justify-center items-center text-lg"
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-        >
-          カゴ
-        </div>
-        <div className="flex flex-col items-center">
-          <img
-            src="/Animal/Cat.png"
-            alt="Cat"
-            draggable
-            className="w-36 h-48 cursor-grab mb-4"
-          />
-        </div>
-      </div>
+      <VariableImage />
       <div className="text-center mt-8">
         <h2 className="text-xl">カゴに入れたアイテムの数: {itemsInBasket}</h2>
       </div>
