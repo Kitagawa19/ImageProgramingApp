@@ -13,6 +13,5 @@ export const SeconedButton:React.FC<SendButtonProps> = ({ label  }) => {
         {label}
       </button>
     </div>
-  );
+  )
 }
-export default SeconedButton;

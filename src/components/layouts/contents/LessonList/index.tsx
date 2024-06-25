@@ -1,12 +1,11 @@
-import React,{ FC } from "react";
-import { LessonCard } from "../../../elements/Lessoncard/page";
-import { title } from "process";
+import React from "react";
+import { LessonCard } from "@/components/elements/LessonCard/index";
 
 const lessons = [
   {
     title: "変数",
     description: "変数について学びます",
-    link: "/Variables/1"
+    link: "/Animation/Variable"
   },
   {
     title: '条件分岐',

@@ -1,4 +1,4 @@
-import SeconedButton from "../elements/SeconedButton/page";
+import { SeconedButton } from "@/components/elements/SeconedButton";
 
 export const SubHeader = () => {
     return (

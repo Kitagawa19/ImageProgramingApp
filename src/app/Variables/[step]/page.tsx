@@ -3,53 +3,13 @@
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Header } from '@/components/layouts/Header';
-import { VariableImage } from '@/components/elements/VariableImage/page';
-import { NavigationButton } from '@/components/elements/NavigationButton/page';
+import { VariableImage } from '@/components/elements/VariableImage/index';
+import { NavigationButton } from '@/components/elements/NavigationButton/index';
+import { MaxSteps, StepConfig } from '@/components/elements/VariableImage/step';
 
-interface StepConfig {
-  title: string;
-  description: string;
-  problem?: string;
-  correctAnswer?: number;
-}
 
-const MaxSteps: { [key: number]: StepConfig } = {
-  1: {
-    title: '変数とは',
-    description: '変数とは何かを学びます。',
-  },
-  2: {
-    title: '変数を使った問題１',
-    description: '変数を使ってみましょう。',
-    problem: `カゴに入れた数に３を足した数は？`,
-    correctAnswer: 8,
-  },
-  3: {
-    title: '変数を使った問題２',
-    description: '変数を使ってみましょう。',
-    problem: `カゴに入れた数に2を引いた数は？`,
-    correctAnswer: 3,
-  },
-  4: {
-    title: '変数を使った問題３',
-    description: '変数を使ってみましょう。',
-    problem: `カゴに入れた数に2をかけた数は？`,
-    correctAnswer: 10,
-  },
-  5: {
-    title: '変数を使った問題４',
-    description: '変数を使ってみましょう。',
-    problem: `カゴに入れた数を２で割った数は？`,
-    correctAnswer: 8,
-  },
-  6: {
-    title: '変数の活用',
-    description: '変数を活用してみましょう。',
-  },
-};
 
 const StepPage = () => {
-  // const [itemsInBasket, setItemsInBasket] = useState(0);
   const [userAnswer, setUserAnswer] = useState<number | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const pathname = usePathname();
@@ -92,29 +52,33 @@ const StepPage = () => {
     <div>
       <Header />
       <h1 className="text-2xl font-bold text-center mt-4">変数の学習</h1>
-      {stepNumber === 2 && (
-        <div className="mt-8 text-center">
-          <h2 className="text-xl mb-4">{stepConfig.problem}</h2>
-          <div className="flex justify-center flex-wrap">{renderItem()}</div>
-          <div
-            className="w-48 h-48 border-2 flex justify-center items-center text-lg mt-4"
-            onDrop={(event) => handleQuestion(event, parseInt(event.dataTransfer.getData('text/plain'), 10))}
-            onDragOver={handleDragOver}
-          >
-            ドロップして答えを入力
-          </div>
-          {userAnswer !== null && (
-            <div className="mt-4">
-              <h2 className="text-xl">あなたの答えは:{userAnswer}</h2>
-              {isCorrect !== null && (
-                <h2 className={`text-xl ${isCorrect ? 'text-green-500' : 'text-red-500'}`}>
-                  {isCorrect ? '正解です' : '不正解です'}
-                </h2>
+      <div className='flex justify-around'>
+        {stepConfig.problem && (
+          <div className="mt-8 text-center">
+            <h2 className="text-xl mb-4">{stepConfig.problem}</h2>
+            <div className="flex justify-center flex-wrap">{renderItem()}</div>
+            <div className="flex justify-center items-center mt-4">
+              <div
+                className="w-48 h-48 border-2 flex justify-center items-center text-lg mt-4"
+                onDrop={(event) => handleQuestion(event, parseInt(event.dataTransfer.getData('text/plain'), 10))}
+                onDragOver={handleDragOver}
+              >
+                ドロップして答えを入力
+              </div>
+              {userAnswer !== null && (
+                <div className="ml-4">
+                  <h2 className="text-xl">あなたの答えは:{userAnswer}</h2>
+                  {isCorrect !== null && (
+                    <h2 className={`text-xl ${isCorrect ? 'text-green-500' : 'text-red-500'}`}>
+                      {isCorrect ? '正解です' : '不正解です'}
+                    </h2>
+                  )}
+                </div>
               )}
             </div>
-          )}
-        </div>
-      )}
+          </div>
+        )}
+      </div>
       <VariableImage />
       <div className="flex justify-between mt-8">
         {stepNumber > 1 && (
