@@ -16,6 +16,13 @@ const StepPage = () => {
   const step = pathname.split('/').pop();
   const stepNumber = step ? parseInt(step, 10) : 0;
   const stepConfig = MaxSteps[stepNumber];
+  const defaultItemCounts: { [key: number]: number } = {
+    2: 5,
+    3: 8,
+    4: 2,
+    5: 10, 
+  };
+  const defaultItemCount = defaultItemCounts[stepNumber] || 0;
 
   if (!stepConfig) {
     return <div>ステップが見つかりません。</div>;
@@ -52,6 +59,20 @@ const StepPage = () => {
     <div>
       <Header />
       <h1 className="text-2xl font-bold text-center mt-4">変数の学習</h1>
+      {stepNumber === 1 && (
+        <div className="mb-4 mt-4 text-center p-4 bg-white border-2 border-gray-300 rounded-lg shadow-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg font-semibold">変数とは何ですか？</p>
+          <p>変数は、情報を保存するための箱のようなものです。</p>
+          <ul className="list-disc list-inside mt-2 text-left">
+            <li>リンゴをカゴにドラッグして入れます。</li>
+            <li>カゴに入ったリンゴの数が増えます。</li>
+            <li>カゴの中のリンゴの数を確認しましょう。</li>
+          </ul><br/>
+          <p><strong>変数は、お買い物に行くときにカゴにものを入れてレジに出すのと同じです</strong></p>
+          <p>レジでカゴを出せば、全部数えなくても中身がわかります。</p>
+          <p>このように、変数を使うとデータを一括で管理できるので便利です。</p>
+        </div>
+      )}
       <div className='flex justify-around'>
         {stepConfig.problem && (
           <div className="mt-8 text-center">
@@ -63,7 +84,7 @@ const StepPage = () => {
                 onDrop={(event) => handleQuestion(event, parseInt(event.dataTransfer.getData('text/plain'), 10))}
                 onDragOver={handleDragOver}
               >
-                ドロップして答えを入力
+                数字をドラッグしてね
               </div>
               {userAnswer !== null && (
                 <div className="ml-4">
@@ -79,7 +100,7 @@ const StepPage = () => {
           </div>
         )}
       </div>
-      <VariableImage />
+      <VariableImage defaultItemCount = { defaultItemCount }/>
       <div className="flex justify-between mt-8">
         {stepNumber > 1 && (
           <NavigationButton label="前へ" href={`/Variables/${stepNumber - 1}`} />

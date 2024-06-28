@@ -1,8 +1,9 @@
 'use client';
 import React, { useState } from 'react';
 
-export const VariableImage = () => {
-  const [itemsInBasket,setItemsInBasket] = useState(0);
+export const VariableImage:React.FC<{ defaultItemCount:number}> = ({ defaultItemCount }) => {
+  const [itemsInBasket,setItemsInBasket] = useState(defaultItemCount);
+
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     setItemsInBasket(itemsInBasket + 1);
@@ -12,28 +13,38 @@ export const VariableImage = () => {
     event.preventDefault();
   };
 
+  const handleClick = () => {
+    setItemsInBasket(itemsInBasket - 1);
+  };
+
   return(
     <div className='mt-4'>
       <div className='flex justify-around'>
         <div
-            className="w-48 h-48 border-2 border-dashed flex justify-center items-center text-lg"
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
-          >
-            カゴ
+          className="w-48 h-48 border-2 border-dashed flex justify-center items-center"
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          onClick={handleClick}
+        >
+          <img
+            src="/basket.png"
+            className="w-full h-full"
+            alt="Basket"
+            draggable={false}
+          />
         </div>
         <div className="flex flex-col items-center">
           <img
-            src="/Animal/Cat.png"
-            alt="Cat"
+            src="/Fruits/apple.png"
+            alt="Apple"
             draggable
-            className="w-36 h-48 cursor-grab mb-4"
-            />
+            className="w-48 h-48 cursor-grab mb-4"
+          />
         </div>
       </div>
-        <div className="text-center mt-8">
-          <h2 className="text-xl">カゴに入れたアイテムの数: {itemsInBasket}</h2>
-        </div>
+      <div className="text-center mt-8">
+        <h2 className="text-xl">カゴに入れたアイテムの数: {itemsInBasket}</h2>
+      </div>
     </div>
   )
 }

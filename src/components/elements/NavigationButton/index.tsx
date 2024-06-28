@@ -10,7 +10,7 @@ export const NavigationButton:React.FC<ButtonProps> = ({ label,href }) => {
   return(
     <div>
       <Link href={href}>
-        <p className="text-blue-500 px-4 py-2 border border-blue-500 rounded hover:bg-blue-500 hover:text-white transition">
+        <p className="bg-orange-500 text-white border-none rounded-full px-10 py-4 m-3 text-xl cursor-pointer hover:bg-orange-600">
         { label }
         </p>
       </Link>
