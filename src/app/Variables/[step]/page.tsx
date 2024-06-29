@@ -102,8 +102,10 @@ const StepPage = () => {
       </div>
       <VariableImage defaultItemCount = { defaultItemCount }/>
       <div className="flex justify-between mt-8">
-        {stepNumber > 1 && (
+        {stepNumber > 1 ? (
           <NavigationButton label="前へ" href={`/Variables/${stepNumber - 1}`} />
+        ) : (
+          <div></div>
         )}
         {stepNumber < Object.keys(MaxSteps).length && (
           <NavigationButton label="次へ" href={`/Variables/${stepNumber + 1}`} />
