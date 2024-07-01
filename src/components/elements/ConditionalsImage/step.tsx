@@ -13,7 +13,7 @@ export interface StepConfig {
     2: {
       title: '条件分岐を使った問題１',
       description: '条件分岐を使ってみましょう。',
-      problem: ``,
+      problem: `季節に合う写真を選ぼう`,
       correctAnswer: 8,
     },
     3: {
