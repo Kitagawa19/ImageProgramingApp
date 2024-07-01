@@ -8,7 +8,7 @@ import { MaxSteps } from '@/components/elements/VariableImage/step';
 
 
 
-export const VariablePage = () => {
+export const ConditionalsPage = () => {
   const [userAnswer, setUserAnswer] = useState<number | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const pathname = usePathname();
@@ -56,11 +56,11 @@ export const VariablePage = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-center mt-4">変数の学習</h1>
+      <h1 className="text-2xl font-bold text-center mt-4">条件分岐の学習</h1>
       {stepNumber === 1 && (
         <div className="mb-4 mt-4 text-center p-4 bg-white border-2 border-gray-300 rounded-lg shadow-lg max-w-2xl mx-auto leading-relaxed">
-          <p className="text-lg font-semibold">変数とは何ですか？</p>
-          <p>変数は、情報を保存するための箱のようなものです。</p>
+          <p className="text-lg font-semibold">条件分岐とは何ですか？</p>
+          <p>条件分岐は、情報を保存するための箱のようなものです。</p>
           <ul className="list-disc list-inside mt-2 text-left">
             <li>リンゴをカゴにドラッグして入れます。</li>
             <li>カゴに入ったリンゴの数が増えます。</li>

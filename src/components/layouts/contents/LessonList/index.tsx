@@ -10,17 +10,17 @@ const lessons = [
   {
     title: '条件分岐',
     description: '条件分岐の使い方を学びます。',
-    link: '/conditionals',
+    link: '/Conditionals/1',
   },
   {
     title: 'ループ',
     description: 'ループの使い方を学びます。',
-    link: '/loops',
+    link: '/Loops/1',
   },
   {
     title: '関数',
     description: '関数の基本を学びます。',
-    link: '/functions',
+    link: '/Functions/1',
   },
 ]
 
