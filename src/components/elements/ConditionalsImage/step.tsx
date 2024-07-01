@@ -13,7 +13,7 @@ export interface StepConfig {
     2: {
       title: '条件分岐を使った問題１',
       description: '条件分岐を使ってみましょう。',
-      problem: `５個リンゴが入ったカゴから３を足した数は？`,
+      problem: ``,
       correctAnswer: 8,
     },
     3: {

@@ -60,7 +60,7 @@ export const ConditionalsPage = () => {
       {stepNumber === 1 && (
         <div className="mb-4 mt-4 text-center p-4 bg-white border-2 border-gray-300 rounded-lg shadow-lg max-w-2xl mx-auto leading-relaxed">
           <p className="text-lg font-semibold">条件分岐とは何ですか？</p>
-          <p>条件分岐は、情報を保存するための箱のようなものです。</p>
+          <p>条件分岐は、「もし、～なら～する」のような特定の条件に応じて動作を変える仕組みです。</p>
           <ul className="list-disc list-inside mt-2 text-left">
             <li>リンゴをカゴにドラッグして入れます。</li>
             <li>カゴに入ったリンゴの数が増えます。</li>
