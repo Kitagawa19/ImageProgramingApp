@@ -1,4 +1,4 @@
-export interface StepConfig {
+interface StepConfig {
   title: string;
   description: string;
   problem?: string;

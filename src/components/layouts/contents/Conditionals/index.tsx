@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { VariableImage } from '@/components/elements/VariableImage/index';
+import { ConditionalsImage } from '@/components/elements/ConditionalsImage/index';
 import { NavigationButton } from '@/components/elements/NavigationButton/index';
 import { MaxSteps } from '@/components/elements/VariableImage/step';
 
@@ -66,9 +66,9 @@ export const ConditionalsPage = () => {
             <li>カゴに入ったリンゴの数が増えます。</li>
             <li>カゴの中のリンゴの数を確認しましょう。</li>
           </ul><br/>
-          <p><strong>変数は、お買い物に行くときにカゴにものを入れてレジに出すのと同じです</strong></p>
-          <p>レジでカゴを出せば、全部数えなくても中身がわかります。</p>
-          <p>このように、変数を使うとデータを一括で管理できるので便利です。</p>
+          <p><strong>条件分岐は、お天気や季節によってやることを決めるのと同じです。</strong></p>
+          <p>例えば、晴れた日には外で遊び、雨の日には家の中で遊ぶようにします。</p>
+          <p>このように、条件分岐を使うと、特定の状況に応じてプログラムの動作を変えることができます。</p>
         </div>
       )}
       <div className='flex justify-around'>
@@ -98,7 +98,7 @@ export const ConditionalsPage = () => {
           </div>
         )}
       </div>
-      <VariableImage defaultItemCount = { defaultItemCount }/>
+      <ConditionalsImage />
       <div className="flex justify-between mt-8">
         {stepNumber > 1 ? (
           <NavigationButton label="前へ" href={`/Variables/${stepNumber - 1}`} />

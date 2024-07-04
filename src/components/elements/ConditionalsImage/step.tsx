@@ -1,11 +1,11 @@
-export interface StepConfig {
+interface StepConfig {
     title: string;
     description: string;
     problem?: string;
     correctAnswer?: number;
   }
   
-  export const MaxSteps: { [key: number]: StepConfig } = {
+export const MaxSteps: { [key: number]: StepConfig } = {
     1: {
       title: '条件分岐とは',
       description: '条件分岐とは何かを学びます。',
