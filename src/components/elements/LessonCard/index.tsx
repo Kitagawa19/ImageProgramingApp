@@ -23,7 +23,7 @@ export const LessonCard: React.FC<LessonCardProps> = ({ title, description, link
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Link href={link} className="block w-full max-w-2xl hover:bg-orange-600 transition hover:scale-105 group">
+      <Link href={link} className="block w-full max-w-2xl hover:bg-orange-600 transition ">
         <motion.div 
           className="p-6 bg-orange-500 text-white rounded-lg shadow-lg hover:bg-orange-600 transition group h-full flex flex-col"
           whileHover={{ scale: 1.05 }}
