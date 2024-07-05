@@ -1,9 +1,11 @@
 import React from 'react';
-import { VariableIntroduction } from '@/components/layouts/contents/Animation/Variables/index';
 
 const VariablePage = () => {
   return (
-    <VariableIntroduction />
+    <div>
+      <h1>変数</h1>
+      <p>変数について学びます。</p>
+    </div>
   );
 };
 export default VariablePage;

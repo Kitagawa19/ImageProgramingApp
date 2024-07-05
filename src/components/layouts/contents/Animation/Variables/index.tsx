@@ -1,32 +1,34 @@
-'use client';
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import React,{ useState, useEffect }  from 'react';
+import { useSpring, animated } from '@react-spring/web';
 
-export const VariableIntroduction: React.FC = () => {
-  const router = useRouter();
+const storyTexts = [
+  "アレックスは村を救うために魔法のクリスタルを探す旅に出ました。",
+  "魔法のクリスタルを集めることで、村に平和をもたらすことができます。",
+  "さあ、冒険の旅に出発しましょう！"
+];
+
+export const StoryAnimation = ({ onComplete }: { onComplete: () => void }) => {
+  const [index, setIndex] = useState(0);
+  const props = useSpring({ opacity: 1, from: { opacity: 0 }, reset: true });
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      router.push('/Variables/1'); // 次の画面に遷移
-    }, 5000); // 5秒後に遷移
+    const interval = setInterval(() => {
+      if (index < storyTexts.length - 1) {
+        setIndex(index + 1);
+      } else {
+        clearInterval(interval);
+        onComplete();
+      }
+    }, 3000);
 
-    return () => clearTimeout(timer);
-  }, [router]);
+    return () => clearInterval(interval);
+  }, [index, onComplete]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <Image src="/Animal/Cat.png" width={200} height={100} alt="Cat" />
-      <div className='relative mt-4 bg-white border-2 border-gray-300 rounded-lg p-4 shadow-lg'>
-        <div className='absolute -top-2 left-1/2 transform -translate-x-1/2 -mt-1 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-b-8 border-b-gray-300'></div>
-        <div className="text-center mt-4">
-          <h2 className="text-2xl font-bold">こんにちは！</h2>
-          <p className="text-xl mt-2">変数は情報を保存するための箱のようなものです。</p>
-          <p className="text-xl mt-2">次の画面で変数についてもっと学びましょう！</p>
-        </div>
-      </div>
+    <div className="story-animation">
+      <animated.div style={props}>
+        <p>{storyTexts[index]}</p>
+      </animated.div>
     </div>
   );
-  
 };
-
