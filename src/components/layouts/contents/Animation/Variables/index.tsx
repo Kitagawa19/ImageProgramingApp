@@ -57,7 +57,7 @@ export const StoryAnimation = ({ onComplete }: { onComplete: () => void }) => {
     <div className="story-animation w-full min-h-screen flex items-center justify-center bg-gray-100">
       <animated.div style={props} className="w-full max-w-4xl">
         {currentItem.type === 'narration' ? (
-          <p className="text-2xl text-center my-8 px-4">{currentItem.text}</p>
+          <p className="text-2xl text-center my-8 px-4 bg-white rounded-lg shadow-md">{currentItem.text}</p>
         ) : (
           <div className="flex flex-col items-center my-8">
             {currentItem.speaker && (
